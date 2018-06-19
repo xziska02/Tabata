@@ -1,10 +1,10 @@
 package com.example.peter.timerjava.Timer;
 
-import android.graphics.Color;
+import com.example.peter.timerjava.BaseInterface;
 
 public interface TimerContract {
 
-    interface TimerPresenterInterface{
+    interface TimerPresenterInterface extends BaseInterface {
         void startTimer();
         void pauseTimer();
         void stopTimer(); //reinitialisation of timer

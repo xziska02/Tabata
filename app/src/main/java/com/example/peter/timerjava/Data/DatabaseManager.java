@@ -1,9 +1,5 @@
 package com.example.peter.timerjava.Data;
 
-import android.util.Log;
-
-import java.util.ArrayList;
-
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -21,6 +17,10 @@ public class DatabaseManager {
             instance = new DatabaseManager();
         }
         return instance;
+    }
+
+    public void closeDB(){
+        realm.close();
     }
 
     public boolean saveTraining(final Training training){
@@ -43,8 +43,8 @@ public class DatabaseManager {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                RealmResults<Training> result = realm.where(Training.class).equalTo("id",id).findAll();
-                result.deleteAllFromRealm();
+            RealmResults<Training> result = realm.where(Training.class).equalTo("id",id).findAll();
+            result.deleteAllFromRealm();
             }
         });
         return true;
@@ -72,8 +72,8 @@ public class DatabaseManager {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                Training training = getTraining(id);
-                training.setName(name);
+            Training training = getTraining(id);
+            training.setName(name);
             }
         });
     }
@@ -82,8 +82,8 @@ public class DatabaseManager {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                Training training = getTraining(id);
-                training.setWorkoutTime(duration);
+            Training training = getTraining(id);
+            training.setWorkoutTime(duration);
             }
         });
     }
@@ -92,8 +92,8 @@ public class DatabaseManager {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                Training training = getTraining(id);
-                training.setRestTime(duration);
+            Training training = getTraining(id);
+            training.setRestTime(duration);
             }
         });
     }
@@ -102,8 +102,8 @@ public class DatabaseManager {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                Training training = getTraining(id);
-                training.setSets(sets);
+            Training training = getTraining(id);
+            training.setSets(sets);
             }
         });
     }
@@ -112,8 +112,8 @@ public class DatabaseManager {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                Training training = getTraining(id);
-                training.setExercises(exercises);
+            Training training = getTraining(id);
+            training.setExercises(exercises);
             }
         });
     }

@@ -48,9 +48,10 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Custom
 
     @Override
     public void onBindViewHolder(@NonNull TrainingAdapter.CustomViewHolder customViewHolder, int i) {
-        customViewHolder.mNameText.setText(mTrainings.get(i).getName());
-        customViewHolder.mWorkoutTimeText.setText(Util.getInstance().getStringTimeFormat(mTrainings.get(i).getWorkoutTime()));
-        customViewHolder.mRestTimeText.setText(Util.getInstance().getStringTimeFormat(mTrainings.get(i).getRestTime()));
+        Training curTraining = mTrainings.get(i);
+        customViewHolder.mNameText.setText(curTraining.getName());
+        customViewHolder.mWorkoutTimeText.setText(Util.getInstance().getStringTimeFormat(curTraining.getWorkoutTime()));
+        customViewHolder.mRestTimeText.setText(Util.getInstance().getStringTimeFormat(curTraining.getRestTime()));
     }
 
     @Override
@@ -103,7 +104,6 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Custom
             Intent intent = new Intent(mContext,TimerActivity.class);
             intent.putExtra("CHOSEN_TRAINING_ID",mTrainings.get(getAdapterPosition()).getId());
             mContext.startActivity(intent);
-            Log.e("ITEM","CLICKED");
         }
     }
 }

@@ -72,11 +72,11 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         mNumberExercisesLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mTextExercises.requestFocus();
-                mTextExercises.setFocusableInTouchMode(true);
-                mTextExercises.setSelection(mTextExercises.getText().length());
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(mTextExercises, InputMethodManager.SHOW_IMPLICIT);
+            mTextExercises.requestFocus();
+            mTextExercises.setFocusableInTouchMode(true);
+            mTextExercises.setSelection(mTextExercises.getText().length());
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(mTextExercises, InputMethodManager.SHOW_IMPLICIT);
             }
         });
     }
@@ -85,8 +85,8 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         exitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ListViewActivity.getInstance().setAdapter();
-                presenter.finish();
+            ListViewActivity.getInstance().setAdapter();
+            presenter.finish();
             }
         });
     }
@@ -95,14 +95,14 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = String.valueOf(mTextName.getText());
-                int exercises = Integer.valueOf(String.valueOf(mTextExercises.getText()));
-                int set = Integer.valueOf(String.valueOf(mTextSet.getText()));
-                presenter.setExercisesNumber(exercises);
-                presenter.setTrainingNameAndSet(name,set);
-                presenter.saveTraining();
-                ListViewActivity.getInstance().setAdapter();
-                presenter.finish();
+            String name = String.valueOf(mTextName.getText());
+            int exercises = Integer.valueOf(String.valueOf(mTextExercises.getText()));
+            int set = Integer.valueOf(String.valueOf(mTextSet.getText()));
+            presenter.setExercisesNumber(exercises);
+            presenter.setTrainingNameAndSet(name,set);
+            presenter.saveTraining();
+            ListViewActivity.getInstance().setAdapter();
+            presenter.finish();
             }
         });
     }
@@ -111,11 +111,11 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         mNumberSetLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mTextSet.requestFocus();
-                mTextSet.setFocusableInTouchMode(true);
-                mTextSet.setSelection(mTextSet.getText().length());
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(mTextSet, InputMethodManager.SHOW_IMPLICIT);
+            mTextSet.requestFocus();
+            mTextSet.setFocusableInTouchMode(true);
+            mTextSet.setSelection(mTextSet.getText().length());
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(mTextSet, InputMethodManager.SHOW_IMPLICIT);
             }
         });
     }
@@ -124,9 +124,9 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         mRestTimeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TimePicker timePicker = new TimePicker();
-                timePicker.setChooseMode(TimePicker.ChosenItem.REST_TIME);
-                timePicker.show(getFragmentManager(), "dialog");
+            TimePicker timePicker = new TimePicker();
+            timePicker.setChooseMode(TimePicker.ChosenItem.REST_TIME);
+            timePicker.show(getFragmentManager(), "dialog");
             }
         });
 
@@ -136,9 +136,9 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         mWorkoutTimeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TimePicker timePicker = new TimePicker();
-                timePicker.setChooseMode(TimePicker.ChosenItem.WORKOUT_TIME);
-                timePicker.show(getFragmentManager(), "dialog");
+            TimePicker timePicker = new TimePicker();
+            timePicker.setChooseMode(TimePicker.ChosenItem.WORKOUT_TIME);
+            timePicker.show(getFragmentManager(), "dialog");
             }
         });
     }

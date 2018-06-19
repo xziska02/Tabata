@@ -27,4 +27,8 @@ public class ListPresenter implements ListContract.ListPresenter {
 
     }
 
+    @Override
+    public void finish() {
+        DatabaseManager.getInstance().closeDB();
+    }
 }

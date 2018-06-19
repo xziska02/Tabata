@@ -59,23 +59,23 @@ public class TimerActivity extends AppCompatActivity implements TimerContract.Ti
         fab_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (presenterInterface.getTimerMode()){
-                    case PAUSE:
-                        //resume timer
-                        presenterInterface.resumeTimer();
-                        playBtn.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_pause));
-                        break;
-                    case STOP:
-                        //start timer
-                        presenterInterface.startTimer();
-                        playBtn.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_pause));
-                        break;
-                    case PLAY:
-                        //pause timer
-                        presenterInterface.pauseTimer();
-                        playBtn.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_play));
-                        break;
-                }
+            switch (presenterInterface.getTimerMode()){
+                case PAUSE:
+                    //resume timer
+                    presenterInterface.resumeTimer();
+                    playBtn.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_pause));
+                    break;
+                case STOP:
+                    //start timer
+                    presenterInterface.startTimer();
+                    playBtn.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_pause));
+                    break;
+                case PLAY:
+                    //pause timer
+                    presenterInterface.pauseTimer();
+                    playBtn.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_play));
+                    break;
+            }
             }
         });
     }
@@ -85,20 +85,18 @@ public class TimerActivity extends AppCompatActivity implements TimerContract.Ti
         fab_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (presenterInterface.getTimerMode()){
-                    case STOP:  //do nothing
-                        Snackbar.make(view, "NOTHING", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                        break;
-                    case PAUSE:
-                    case PLAY:  //stop counter
-                        Snackbar.make(view, "RESETED", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                        presenterInterface.stopTimer();
-                        playBtn.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_play));
-
-                }
-
+            switch (presenterInterface.getTimerMode()){
+                case STOP:  //do nothing
+                    Snackbar.make(view, "NOTHING", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    break;
+                case PAUSE:
+                case PLAY:  //stop counter
+                    Snackbar.make(view, "RESETED", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    presenterInterface.stopTimer();
+                    playBtn.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_play));
+            }
             }
         });
     }

@@ -74,6 +74,7 @@ public class SettingPresenter implements SettingContract.PresenterInterface {
 
     @Override
     public void finish() {
+        DatabaseManager.getInstance().closeDB();
         mActivity.finish();
     }
 

@@ -17,8 +17,8 @@ public class Util {
         long timeInSeconds = duration/1000;
         long minutes = timeInSeconds / 60;
         long remainingSeconds = timeInSeconds % 60;
-        String minuteStr = "";
-        String secondsStr = "";
+        String minuteStr;
+        String secondsStr;
         if (minutes < 10){
             minuteStr = "0" + Long.toString(minutes);
         }else{

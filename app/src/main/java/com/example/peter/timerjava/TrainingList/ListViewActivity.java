@@ -26,7 +26,6 @@ public class ListViewActivity extends AppCompatActivity implements ListContract.
     private static ListContract.ListView instance;
     private Context mContext;
 
-
     public static ListContract.ListView getInstance(){
         return instance;
     }
@@ -56,16 +55,15 @@ public class ListViewActivity extends AppCompatActivity implements ListContract.
         mAddTrainingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, SettingActivity.class);
-                Training training = new Training();
-                training.setId();
-                intent.putExtra("TRAINING_ID", training.getId());
-                intent.putExtra("NEW_DATA",true);
-                startActivity(intent);
+            Intent intent = new Intent(mContext, SettingActivity.class);
+            Training training = new Training();
+            training.setId();
+            intent.putExtra("TRAINING_ID", training.getId());
+            intent.putExtra("NEW_DATA",true);
+            startActivity(intent);
             }
         });
     }
-
 
     @Override
     public void setAdapter(){

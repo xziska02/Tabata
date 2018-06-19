@@ -24,7 +24,7 @@ public class TimerPresenter implements TimerContract.TimerPresenterInterface{
     private static int setCount = 0;
     private static long fullTimeExercise;
     private static int exerciseCount = 0;
-    private long fullTimeHolder = 0;
+    private static long fullTimeHolder = 0;
     private final MediaPlayer mp;
 
     public TimerPresenter(TimerActivity timerActivity) {
@@ -164,8 +164,9 @@ public class TimerPresenter implements TimerContract.TimerPresenterInterface{
         workingTime = 10000L;
         fullTimeExercise = actualTraining.getFullExerciseTime();
         timerActivity.initProgressBar(workingTime);
-        timerActivity.showProgress(0);
-        timerActivity.showTimeProgress("00:00");
+        timerActivity.changeProgressColor(timerActivity.getResources().getColor(color.colorAccent));
+        timerActivity.showProgress(workingTime);
+        timerActivity.showTimeProgress(Util.getInstance().getStringTimeFormat(workingTime));
         timerActivity.showMotivationString(timerActivity.getResources().getString(string.start));
         timerActivity.showExercisesCount(Util.getInstance().getNormalNumberFormat(actualTraining.getExercises()));
         timerActivity.showFullExerciseTime(Util.getInstance().getStringTimeFormat(actualTraining.getFullExerciseTime()));
@@ -173,4 +174,8 @@ public class TimerPresenter implements TimerContract.TimerPresenterInterface{
         fullTimeHolder = 0;
     }
 
+    @Override
+    public void finish() {
+        DatabaseManager.getInstance().closeDB();
+    }
 }
