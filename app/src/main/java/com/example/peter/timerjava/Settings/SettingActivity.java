@@ -152,11 +152,8 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
                 mTextName.setSelection(mTextName.getText().length());
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(mTextName, InputMethodManager.SHOW_IMPLICIT);
-
             }
         });
-
-
     }
 
     @Override

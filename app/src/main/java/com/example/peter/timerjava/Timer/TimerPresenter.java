@@ -1,5 +1,6 @@
 package com.example.peter.timerjava.Timer;
 
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.util.Log;
 
@@ -7,6 +8,8 @@ import com.example.peter.timerjava.Data.DatabaseManager;
 import com.example.peter.timerjava.Data.Training;
 import com.example.peter.timerjava.R;
 import com.example.peter.timerjava.Utils.Util;
+
+import static com.example.peter.timerjava.R.*;
 
 public class TimerPresenter implements TimerContract.TimerPresenterInterface{
 
@@ -22,6 +25,7 @@ public class TimerPresenter implements TimerContract.TimerPresenterInterface{
     private static long fullTimeExercise;
     private static int exerciseCount = 0;
     private long fullTimeHolder = 0;
+    private final MediaPlayer mp;
 
     public TimerPresenter(TimerActivity timerActivity) {
         int trainingID = timerActivity.getIntent().getIntExtra("CHOSEN_TRAINING_ID",1);
@@ -31,6 +35,7 @@ public class TimerPresenter implements TimerContract.TimerPresenterInterface{
         fullTimeExercise = actualTraining.getFullExerciseTime();
         this.timerActivity = timerActivity;
         initData();
+        mp = MediaPlayer.create(timerActivity, raw.beep);
 
     }
 
@@ -40,8 +45,8 @@ public class TimerPresenter implements TimerContract.TimerPresenterInterface{
         remainingTime = workingTime;
         switch (timerProcess){
             case START:     //10 seconds start
-                timerActivity.showMotivationString(timerActivity.getResources().getString(R.string.start));
-                timerActivity.changeProgressColor(timerActivity.getResources().getColor(R.color.colorStart));
+                timerActivity.showMotivationString(timerActivity.getResources().getString(string.start));
+                timerActivity.changeProgressColor(timerActivity.getResources().getColor(color.colorStart));
                 workingTime = 10000L;
                 timerProcess = TimerProcess.START;
                 setCount = actualTraining.getSets();
@@ -104,23 +109,25 @@ public class TimerPresenter implements TimerContract.TimerPresenterInterface{
 
             @Override
             public void onFinish() {
+                mp.start();
                 switch (timerProcess){
                     case START:
-                        timerActivity.showMotivationString(timerActivity.getResources().getString(R.string.workingOut));
-                        timerActivity.changeProgressColor(timerActivity.getResources().getColor(R.color.colorTimer));
+                        timerActivity.showMotivationString(timerActivity.getResources().getString(string.workingOut));
+                        timerActivity.changeProgressColor(timerActivity.getResources().getColor(color.colorTimer));
                         workingTime = actualTraining.getWorkoutTime();
                         timerProcess = TimerProcess.TRAIN;
+
                         break;
                     case TRAIN:
-                        timerActivity.showMotivationString(timerActivity.getResources().getString(R.string.rest));
-                        timerActivity.changeProgressColor(timerActivity.getResources().getColor(R.color.colorRest));
+                        timerActivity.showMotivationString(timerActivity.getResources().getString(string.rest));
+                        timerActivity.changeProgressColor(timerActivity.getResources().getColor(color.colorRest));
                         workingTime = actualTraining.getRestTime();
                         timerProcess = TimerProcess.REST;
                         fullTimeHolder += workingTime;
                         break;
                     case REST:
-                        timerActivity.showMotivationString(timerActivity.getResources().getString(R.string.workingOut));
-                        timerActivity.changeProgressColor(timerActivity.getResources().getColor(R.color.colorTimer));
+                        timerActivity.showMotivationString(timerActivity.getResources().getString(string.workingOut));
+                        timerActivity.changeProgressColor(timerActivity.getResources().getColor(color.colorTimer));
                         workingTime = actualTraining.getWorkoutTime();
                         timerProcess = TimerProcess.TRAIN;
                         exerciseCount--;
@@ -159,7 +166,7 @@ public class TimerPresenter implements TimerContract.TimerPresenterInterface{
         timerActivity.initProgressBar(workingTime);
         timerActivity.showProgress(0);
         timerActivity.showTimeProgress("00:00");
-        timerActivity.showMotivationString(timerActivity.getResources().getString(R.string.start));
+        timerActivity.showMotivationString(timerActivity.getResources().getString(string.start));
         timerActivity.showExercisesCount(Util.getInstance().getNormalNumberFormat(actualTraining.getExercises()));
         timerActivity.showFullExerciseTime(Util.getInstance().getStringTimeFormat(actualTraining.getFullExerciseTime()));
         timerActivity.showSetCount(Util.getInstance().getNormalNumberFormat(actualTraining.getSets()));
