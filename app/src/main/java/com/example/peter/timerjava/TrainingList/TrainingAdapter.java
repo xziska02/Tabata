@@ -42,8 +42,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Custom
     public TrainingAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View contactView = inflater.inflate(R.layout.workout_item, viewGroup, false);
-        CustomViewHolder viewHolder = new CustomViewHolder(contactView);
-        return viewHolder;
+        return new CustomViewHolder(contactView);
     }
 
     @Override

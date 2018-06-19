@@ -72,4 +72,9 @@ public class ListViewActivity extends AppCompatActivity implements ListContract.
         mTrainingRecycler.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.finish();
+    }
 }

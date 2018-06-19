@@ -4,7 +4,7 @@ import com.example.peter.timerjava.BaseInterface;
 
 public interface ListContract {
 
-    interface ListPresenter extends BaseInterface {
+    interface ListPresenter extends BaseInterface{
         void addNewTraining();
     }
 

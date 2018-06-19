@@ -41,7 +41,6 @@ public class TimerActivity extends AppCompatActivity implements TimerContract.Ti
     @BindView(R.id.workout_time_text)
     TextView fullTimeText;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +54,7 @@ public class TimerActivity extends AppCompatActivity implements TimerContract.Ti
     }
 
     private void setFabPlay(){
-        FloatingActionButton fab_play = (FloatingActionButton) findViewById(R.id.fab_play);
+        FloatingActionButton fab_play = findViewById(R.id.fab_play);
         fab_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +80,7 @@ public class TimerActivity extends AppCompatActivity implements TimerContract.Ti
     }
 
     private void setFabStop(){
-        FloatingActionButton fab_stop = (FloatingActionButton) findViewById(R.id.fab_stop);
+        FloatingActionButton fab_stop = findViewById(R.id.fab_stop);
         fab_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

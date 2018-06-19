@@ -1,7 +1,6 @@
 package com.example.peter.timerjava.Settings;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.example.peter.timerjava.Data.DatabaseManager;
@@ -10,8 +9,8 @@ import com.example.peter.timerjava.Utils.Util;
 
 public class SettingPresenter implements SettingContract.PresenterInterface {
 
-    private static SettingActivity mActivity;
-    private static Training training;
+    private SettingActivity mActivity;
+    private Training training;
 
     public SettingPresenter(SettingActivity activity) {
         mActivity = activity;
@@ -60,7 +59,7 @@ public class SettingPresenter implements SettingContract.PresenterInterface {
     @Override
     public void setExercisesNumber(int exercises) {
         if (!DatabaseManager.getInstance().isTrainingInDB(training.getId())){
-            training.setRestTime(exercises);
+            training.setExercises(exercises);
         }else{
             DatabaseManager.getInstance().updateExercises(training.getId(),exercises);
         }
@@ -74,7 +73,6 @@ public class SettingPresenter implements SettingContract.PresenterInterface {
 
     @Override
     public void finish() {
-        DatabaseManager.getInstance().closeDB();
         mActivity.finish();
     }
 
@@ -89,7 +87,7 @@ public class SettingPresenter implements SettingContract.PresenterInterface {
             training = DatabaseManager.getInstance().getTraining(id);
         }
         mActivity.showTrainingInfo(training);
-
+        Log.e("REST", "DATA " + training.getRestTime());
     }
 
 
