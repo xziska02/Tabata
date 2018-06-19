@@ -7,4 +7,6 @@
     <color name="colorLightBackground">#454545</color>
     <color name="colorSelectBackground">#5b5b5b</color>
     <color name="colorTimer">#8b0505</color>
+    <color name="colorStart">#03ab3f</color>
+    <color name="colorRest">#1735be</color>
 </resources>

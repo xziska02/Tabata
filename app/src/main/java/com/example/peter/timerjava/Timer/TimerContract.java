@@ -18,5 +18,9 @@ public interface TimerContract {
         void changeProgressColor(int color);
         void showSnack(String msg);
         void showTimeProgress(String progressTime);
+        void showMotivationString(String msg);
+        void showSetCount(String setCount);
+        void showExercisesCount(String exerciseCount);
+        void showFullExerciseTime(String time);
     }
 }

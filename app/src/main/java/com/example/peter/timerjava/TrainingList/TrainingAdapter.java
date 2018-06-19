@@ -18,6 +18,7 @@ import com.example.peter.timerjava.Data.Training;
 import com.example.peter.timerjava.R;
 import com.example.peter.timerjava.Settings.SettingActivity;
 import com.example.peter.timerjava.Timer.TimerActivity;
+import com.example.peter.timerjava.Utils.Util;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,8 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Custom
     @Override
     public void onBindViewHolder(@NonNull TrainingAdapter.CustomViewHolder customViewHolder, int i) {
         customViewHolder.mNameText.setText(mTrainings.get(i).getName());
-
+        customViewHolder.mWorkoutTimeText.setText(Util.getInstance().getStringTimeFormat(mTrainings.get(i).getWorkoutTime()));
+        customViewHolder.mRestTimeText.setText(Util.getInstance().getStringTimeFormat(mTrainings.get(i).getRestTime()));
     }
 
     @Override
@@ -66,6 +68,10 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Custom
         FrameLayout mChangeLayout;
         @BindView(R.id.select_item_body)
         ConstraintLayout mainBody;
+        @BindView(R.id.workout_time_text)
+        TextView mWorkoutTimeText;
+        @BindView(R.id.item_rest_time_text)
+        TextView mRestTimeText;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);

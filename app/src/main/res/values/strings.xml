@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">TimerJava</string>
+    <string name="app_name">Tabata</string>
     <string name="title_activity_setting">SettingActivity</string>
     <string name="name">Name</string>
     <string name="title_activity_timer">TimerActivity</string>
+    <string name="start">Get Ready!</string>
+    <string name="rest">Rest</string>
+    <string name="workingOut">Work Hard!</string>
 </resources>

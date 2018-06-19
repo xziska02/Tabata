@@ -22,7 +22,6 @@ public class SettingPresenter implements SettingContract.PresenterInterface {
 
     @Override
     public boolean saveTraining() {
-        Log.e("SAVE","ID: " + training.getId());
         return DatabaseManager.getInstance().saveTraining(training);
     }
 
@@ -32,7 +31,6 @@ public class SettingPresenter implements SettingContract.PresenterInterface {
         if (!DatabaseManager.getInstance().isTrainingInDB(training.getId())){
             training.setWorkoutTime(duration);
         }else{
-            Log.e("TEST","IN ELSE");
             DatabaseManager.getInstance().updateWorkoutTime(training.getId(),duration);
         }
         mActivity.showWorkoutTime(Util.getInstance().getStringTimeFormat(duration));
@@ -40,7 +38,11 @@ public class SettingPresenter implements SettingContract.PresenterInterface {
 
     @Override
     public void setRestTime(long duration) {
-        training.setRestTime(duration);
+        if (!DatabaseManager.getInstance().isTrainingInDB(training.getId())){
+            training.setRestTime(duration);
+        }else{
+            DatabaseManager.getInstance().updateRestTime(training.getId(),duration);
+        }
         mActivity.showRestTime(Util.getInstance().getStringTimeFormat(duration));
     }
 
@@ -50,9 +52,19 @@ public class SettingPresenter implements SettingContract.PresenterInterface {
             training.setName(name);
             training.setSets(set);
         }else{
-            Log.e("TEST","IN ELSE");
             DatabaseManager.getInstance().updateName(training.getId(),name);
+            DatabaseManager.getInstance().updateSets(training.getId(),set);
         }
+    }
+
+    @Override
+    public void setExercisesNumber(int exercises) {
+        if (!DatabaseManager.getInstance().isTrainingInDB(training.getId())){
+            training.setRestTime(exercises);
+        }else{
+            DatabaseManager.getInstance().updateExercises(training.getId(),exercises);
+        }
+        mActivity.showNumberOfExercises(Integer.toString(exercises));
     }
 
     @Override
@@ -69,7 +81,6 @@ public class SettingPresenter implements SettingContract.PresenterInterface {
     public void getExtra(Intent intent) {
         int id = intent.getIntExtra("TRAINING_ID",0);
         boolean newData = intent.getBooleanExtra("NEW_DATA",true);
-        Log.e("DATA","ID: "+ Integer.toString(id) + " SIZE: " + Integer.toString(DatabaseManager.getInstance().getDBsize()));
         if (newData){
             training = new Training();
             training.setId(id);
@@ -79,5 +90,7 @@ public class SettingPresenter implements SettingContract.PresenterInterface {
         mActivity.showTrainingInfo(training);
 
     }
+
+
 
 }

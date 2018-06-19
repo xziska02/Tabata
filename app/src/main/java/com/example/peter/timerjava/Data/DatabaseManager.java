@@ -88,6 +88,37 @@ public class DatabaseManager {
         });
     }
 
+    public void updateRestTime(final int id, final long duration){
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Training training = getTraining(id);
+                training.setRestTime(duration);
+            }
+        });
+    }
+
+    public void updateSets(final int id, final int sets){
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Training training = getTraining(id);
+                training.setSets(sets);
+            }
+        });
+    }
+
+    public void updateExercises(final int id, final int exercises){
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Training training = getTraining(id);
+                training.setExercises(exercises);
+            }
+        });
+    }
+
+
     public int getDBsize(){
         return realm.where(Training.class).findAll().size();
     }

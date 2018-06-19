@@ -31,4 +31,14 @@ public class Util {
         }
         return minuteStr + ":" + secondsStr;
     }
+
+    public String getNormalNumberFormat(int count){
+        String output;
+        if (count < 10){
+            output = "0" + Integer.toString(count);
+        }else{
+            output = Long.toString(count);
+        }
+        return output;
+    }
 }

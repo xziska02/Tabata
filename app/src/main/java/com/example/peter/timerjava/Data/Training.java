@@ -1,7 +1,5 @@
 package com.example.peter.timerjava.Data;
 
-import java.sql.Timestamp;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -13,15 +11,15 @@ public class Training extends RealmObject {
     private long mWorkoutTime = 30000L;
     private long mRestTime = 10000L;
     private int mSets = 6;
-    private int excercises = 8;
+    private int exercises = 8;
     private long timestamp;
 
-    public int getExcercises() {
-        return excercises;
+    public int getExercises() {
+        return exercises;
     }
 
-    public void setExcercises(int excercises) {
-        this.excercises = excercises;
+    public void setExercises(int exercises) {
+        this.exercises = exercises;
     }
 
     public long getTimestamp() {
@@ -99,5 +97,10 @@ public class Training extends RealmObject {
         long remainingSeconds = timeInSeconds % 60;
         String outputTime = Long.toString(minutes) + ":" + Long.toString(remainingSeconds);
         return outputTime;
+    }
+
+    public long getFullExerciseTime(){
+        long oneExerciseTime = mWorkoutTime + mRestTime;
+        return oneExerciseTime * exercises * mSets;
     }
 }

@@ -2,14 +2,13 @@ package com.example.peter.timerjava.Timer;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -29,10 +28,19 @@ public class TimerActivity extends AppCompatActivity implements TimerContract.Ti
     @BindView(R.id.fab_play)
     FloatingActionButton playBtn;
     @BindView(R.id.fab_stop)
-    FloatingActionButton stopbtn;
+    FloatingActionButton stopBtn;
     private Context mContext;
     @BindView(R.id.progres_countdown_text)
-    TextView progres_countdown_text;
+    TextView progressCountdownText;
+    @BindView(R.id.motivationValue)
+    TextView motivationText;
+    @BindView(R.id.number_exercises_count)
+    TextView exercisesText;
+    @BindView(R.id.number_set_count)
+    TextView setsText;
+    @BindView(R.id.workout_time_text)
+    TextView fullTimeText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +115,7 @@ public class TimerActivity extends AppCompatActivity implements TimerContract.Ti
 
     @Override
     public void changeProgressColor(int color) {
-        progressBar.setBackgroundColor(color);
+        progressBar.getCurrentDrawable().setColorFilter(color,PorterDuff.Mode.SRC_IN);
     }
 
     @Override
@@ -119,8 +127,27 @@ public class TimerActivity extends AppCompatActivity implements TimerContract.Ti
 
     @Override
     public void showTimeProgress(String progressTime) {
-        progres_countdown_text.setText(progressTime);
-        Log.e("SHOW TIME", progressTime);
+        progressCountdownText.setText(progressTime);
+    }
+
+    @Override
+    public void showMotivationString(String msg) {
+        motivationText.setText(msg);
+    }
+
+    @Override
+    public void showSetCount(String setCount) {
+        setsText.setText(setCount);
+    }
+
+    @Override
+    public void showExercisesCount(String exerciseCount) {
+        exercisesText.setText(exerciseCount);
+    }
+
+    @Override
+    public void showFullExerciseTime(String time) {
+        fullTimeText.setText(time);
     }
 
     @Override
@@ -143,4 +170,6 @@ public class TimerActivity extends AppCompatActivity implements TimerContract.Ti
         if (presenterInterface.getTimerMode() == TimerMode.PLAY)
             presenterInterface.resumeTimer();
     }
+
+
 }

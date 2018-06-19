@@ -29,6 +29,8 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
     ConstraintLayout mRestTimeLayout;
     @BindView(R.id.setting_number_set_layout)
     ConstraintLayout mNumberSetLayout;
+    @BindView(R.id.setting_number_exercises_layout)
+    ConstraintLayout mNumberExercisesLayout;
 
     @BindView(R.id.text_name)
     EditText mTextName;
@@ -38,6 +40,8 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
     TextView mTextRest;
     @BindView(R.id.text_sets)
     EditText mTextSet;
+    @BindView(R.id.text_exercises)
+    EditText mTextExercises;
 
     @BindView(R.id.saveTrainingFloatingBtn)
     FloatingActionButton saveBtn;
@@ -59,8 +63,22 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         addWorkoutTimeClick();
         addRestTimeClick();
         addSetNumberClick();
+        addExercisesNumberClick();
         setSaveBtn();
         setExitBtn();
+    }
+
+    private void addExercisesNumberClick() {
+        mNumberExercisesLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextExercises.requestFocus();
+                mTextExercises.setFocusableInTouchMode(true);
+                mTextExercises.setSelection(mTextExercises.getText().length());
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(mTextExercises, InputMethodManager.SHOW_IMPLICIT);
+            }
+        });
     }
 
     private void setExitBtn() {
@@ -78,7 +96,9 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
             @Override
             public void onClick(View view) {
                 String name = String.valueOf(mTextName.getText());
+                int exercises = Integer.valueOf(String.valueOf(mTextExercises.getText()));
                 int set = Integer.valueOf(String.valueOf(mTextSet.getText()));
+                presenter.setExercisesNumber(exercises);
                 presenter.setTrainingNameAndSet(name,set);
                 presenter.saveTraining();
                 ListViewActivity.getInstance().setAdapter();
@@ -165,6 +185,12 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         mTextSet.setText(Integer.toString(training.getSets()));
         mTextWorkout.setText(training.getWorkoutTimeString());
         mTextRest.setText(training.getRestTimeString());
+        mTextExercises.setText(Integer.toString(training.getExercises()));
+    }
+
+    @Override
+    public void showNumberOfExercises(String exercises) {
+        mTextExercises.setText(exercises);
     }
 
 

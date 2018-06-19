@@ -14,6 +14,7 @@ public interface SettingContract {
         void setTrainingSets(int set);
         void finish();
         void getExtra(Intent intent);
+        void setExercisesNumber(int exercises);
     }
 
     interface ViewInterface{
@@ -22,5 +23,6 @@ public interface SettingContract {
         void showRestTime(String restTime);
         void showNumberOfSets(String sets);
         void showTrainingInfo(Training training);
+        void showNumberOfExercises(String exercises);
     }
 }
