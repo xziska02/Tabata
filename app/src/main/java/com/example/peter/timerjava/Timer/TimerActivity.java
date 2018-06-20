@@ -41,6 +41,7 @@ public class TimerActivity extends AppCompatActivity implements TimerContract.Ti
     @BindView(R.id.workout_time_text)
     TextView fullTimeText;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
